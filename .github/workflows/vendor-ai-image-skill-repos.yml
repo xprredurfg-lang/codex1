@@ -1,0 +1,114 @@
+name: Vendor AI Image Skill Repositories
+
+on:
+  workflow_dispatch:
+  push:
+    paths:
+      - "ai-image-prompt-skill-repos/vendor-run-trigger.txt"
+      - ".github/workflows/vendor-ai-image-skill-repos.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: vendor-ai-image-skill-repos
+  cancel-in-progress: false
+
+jobs:
+  vendor-repos:
+    runs-on: ubuntu-latest
+    timeout-minutes: 120
+
+    steps:
+      - name: Checkout target repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          persist-credentials: true
+
+      - name: Configure Git author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Prepare directories
+        run: |
+          set -euo pipefail
+          rm -rf external/ai-image-prompt-skills-vendored
+          mkdir -p external/ai-image-prompt-skills-vendored
+          mkdir -p _vendor_tmp
+
+      - name: Clone and copy all selected repositories
+        run: |
+          set -euo pipefail
+
+          vendor_repo() {
+            local repo_url="$1"
+            local target_dir="$2"
+            local tmp_dir="_vendor_tmp/$target_dir"
+            local final_dir="external/ai-image-prompt-skills-vendored/$target_dir"
+
+            echo "============================================"
+            echo "Vendoring: $repo_url"
+            echo "Target:    $final_dir"
+            echo "============================================"
+
+            rm -rf "$tmp_dir" "$final_dir"
+            git clone --depth 1 "$repo_url" "$tmp_dir"
+
+            local source_commit
+            source_commit="$(git -C "$tmp_dir" rev-parse HEAD)"
+            local source_branch
+            source_branch="$(git -C "$tmp_dir" branch --show-current || true)"
+
+            rm -rf "$tmp_dir/.git"
+            rm -rf "$tmp_dir/.github/workflows" || true
+
+            mkdir -p "$final_dir"
+            cp -a "$tmp_dir/." "$final_dir/"
+
+            cat > "$final_dir/.source-info.json" <<EOF
+          {
+            "source_url": "$repo_url",
+            "source_commit": "$source_commit",
+            "source_branch": "$source_branch",
+            "vendored_at_utc": "$(date -u +%Y-%m-%dT%H:%M:%SZ)",
+            "note": "This directory is a vendored copy of the upstream repository with .git metadata removed."
+          }
+          EOF
+
+            echo "Copied $repo_url @ $source_commit"
+          }
+
+          vendor_repo "https://github.com/YouMind-OpenLab/ai-image-prompts-skill.git" "YouMind-OpenLab_ai-image-prompts-skill"
+          vendor_repo "https://github.com/wuyoscar/GPT-Image2-Skill.git" "wuyoscar_GPT-Image2-Skill"
+          vendor_repo "https://github.com/ConardLi/garden-skills.git" "ConardLi_garden-skills"
+          vendor_repo "https://github.com/smixs/visual-skills.git" "smixs_visual-skills"
+          vendor_repo "https://github.com/devanshug2307/Awesome-AI-Image-Prompts.git" "devanshug2307_Awesome-AI-Image-Prompts"
+          vendor_repo "https://github.com/creatify-ai/ai-ad-prompt-guide.git" "creatify-ai_ai-ad-prompt-guide"
+          vendor_repo "https://github.com/jezweb/claude-skills.git" "jezweb_claude-skills"
+          vendor_repo "https://github.com/pauhu/gemini-image-prompting-handbook.git" "pauhu_gemini-image-prompting-handbook"
+          vendor_repo "https://github.com/backblaze-b2-samples/image-generation-prompt-flow.git" "backblaze-b2-samples_image-generation-prompt-flow"
+          vendor_repo "https://github.com/K-Dense-AI/claude-scientific-writer.git" "K-Dense-AI_claude-scientific-writer"
+
+      - name: Remove temporary files and summarize size
+        run: |
+          set -euo pipefail
+          rm -rf _vendor_tmp
+          echo "Vendored directory size:"
+          du -sh external/ai-image-prompt-skills-vendored || true
+          echo "Largest files:"
+          find external/ai-image-prompt-skills-vendored -type f -printf '%s %p\n' | sort -nr | head -50 || true
+          echo "Files larger than 95MB, if any:"
+          find external/ai-image-prompt-skills-vendored -type f -size +95M -print || true
+
+      - name: Commit vendored repositories
+        run: |
+          set -euo pipefail
+          git add external/ai-image-prompt-skills-vendored
+          if git diff --cached --quiet; then
+            echo "No vendored changes to commit."
+            exit 0
+          fi
+          git commit -m "Vendor AI image prompt and skill repositories"
+          git push
