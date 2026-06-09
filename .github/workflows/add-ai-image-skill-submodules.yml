@@ -1,0 +1,36 @@
+name: Add AI Image Skill Repositories as Submodules
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  add-submodules:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - name: Configure Git author
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Add AI image prompt skill repositories as submodules
+        run: |
+          bash ai-image-prompt-skill-repos/scripts/add_submodules.sh
+
+      - name: Commit and push changes
+        run: |
+          if git diff --cached --quiet && git diff --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+          git add .gitmodules external/ai-image-prompt-skills
+          git commit -m "Add AI image prompt skill repositories as submodules"
+          git push
