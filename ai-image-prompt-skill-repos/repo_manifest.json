@@ -1,0 +1,75 @@
+[
+  {
+    "name": "ai-image-prompts-skill",
+    "repo": "YouMind-OpenLab/ai-image-prompts-skill",
+    "url": "https://github.com/YouMind-OpenLab/ai-image-prompts-skill.git",
+    "target_path": "external/ai-image-prompt-skills/YouMind-OpenLab_ai-image-prompts-skill",
+    "reason": "10,000+ real-world image generation prompt library; useful for prompt retrieval and remix workflows."
+  },
+  {
+    "name": "GPT-Image2-Skill",
+    "repo": "wuyoscar/GPT-Image2-Skill",
+    "url": "https://github.com/wuyoscar/GPT-Image2-Skill.git",
+    "target_path": "external/ai-image-prompt-skills/wuyoscar_GPT-Image2-Skill",
+    "reason": "GPT Image 2 prompt gallery, agentic skill and CLI; close to Codex/OpenClaw image workflow usage."
+  },
+  {
+    "name": "garden-skills",
+    "repo": "ConardLi/garden-skills",
+    "url": "https://github.com/ConardLi/garden-skills.git",
+    "target_path": "external/ai-image-prompt-skills/ConardLi_garden-skills",
+    "focus_path": "skills/gpt-image-2",
+    "reason": "Engineering-style Skill structure; includes GPT Image 2 skill, prompt writing references and multilingual documentation."
+  },
+  {
+    "name": "visual-skills",
+    "repo": "smixs/visual-skills",
+    "url": "https://github.com/smixs/visual-skills.git",
+    "target_path": "external/ai-image-prompt-skills/smixs_visual-skills",
+    "reason": "Visual prompt and professional visual content skill examples."
+  },
+  {
+    "name": "Awesome-AI-Image-Prompts",
+    "repo": "devanshug2307/Awesome-AI-Image-Prompts",
+    "url": "https://github.com/devanshug2307/Awesome-AI-Image-Prompts.git",
+    "target_path": "external/ai-image-prompt-skills/devanshug2307_Awesome-AI-Image-Prompts",
+    "reason": "Curated image generation prompt list across popular image models."
+  },
+  {
+    "name": "ai-ad-prompt-guide",
+    "repo": "creatify-ai/ai-ad-prompt-guide",
+    "url": "https://github.com/creatify-ai/ai-ad-prompt-guide.git",
+    "target_path": "external/ai-image-prompt-skills/creatify-ai_ai-ad-prompt-guide",
+    "reason": "Advertising image/video prompt guide; useful for commercial poster, product and UGC style generation."
+  },
+  {
+    "name": "claude-skills",
+    "repo": "jezweb/claude-skills",
+    "url": "https://github.com/jezweb/claude-skills.git",
+    "target_path": "external/ai-image-prompt-skills/jezweb_claude-skills",
+    "focus_path": "plugins/design-assets/skills/ai-image-generator",
+    "reason": "Claude Skill examples; useful for learning skill shape, batch generation and iterative selection workflow."
+  },
+  {
+    "name": "gemini-image-prompting-handbook",
+    "repo": "pauhu/gemini-image-prompting-handbook",
+    "url": "https://github.com/pauhu/gemini-image-prompting-handbook.git",
+    "target_path": "external/ai-image-prompt-skills/pauhu_gemini-image-prompting-handbook",
+    "reason": "JSON-first structured image prompt handbook; useful for repeatable, schema-driven prompt writing."
+  },
+  {
+    "name": "image-generation-prompt-flow",
+    "repo": "backblaze-b2-samples/image-generation-prompt-flow",
+    "url": "https://github.com/backblaze-b2-samples/image-generation-prompt-flow.git",
+    "target_path": "external/ai-image-prompt-skills/backblaze-b2-samples_image-generation-prompt-flow",
+    "reason": "Prompt flow sample app; useful for prompt lineage, versioning and multi-model workflow comparison."
+  },
+  {
+    "name": "claude-scientific-writer",
+    "repo": "K-Dense-AI/claude-scientific-writer",
+    "url": "https://github.com/K-Dense-AI/claude-scientific-writer.git",
+    "target_path": "external/ai-image-prompt-skills/K-Dense-AI_claude-scientific-writer",
+    "focus_path": "skills/generate-image",
+    "reason": "Scientific and controlled image generation skill; useful for negative constraints and avoiding prompt text pollution."
+  }
+]
