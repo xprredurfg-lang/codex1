@@ -1,0 +1,5 @@
+Trigger vendoring workflow for AI image prompt and skill repositories.
+
+Created by ChatGPT on 2026-06-09.
+
+This file exists only to trigger `.github/workflows/vendor-ai-image-skill-repos.yml`.
