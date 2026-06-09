@@ -1,0 +1,7 @@
+{
+  "source_url": "https://github.com/jezweb/claude-skills.git",
+  "source_commit": "eb374ac4f381ad863e3773c9df55dd00cf2aa569",
+  "source_branch": "main",
+  "vendored_at_utc": "2026-06-09T01:29:43Z",
+  "note": "This directory is a vendored copy of the upstream repository with .git metadata removed."
+}

@@ -1,0 +1,7 @@
+{
+  "source_url": "https://github.com/backblaze-b2-samples/image-generation-prompt-flow.git",
+  "source_commit": "49716f307519563173516236e22618ac02e82848",
+  "source_branch": "main",
+  "vendored_at_utc": "2026-06-09T01:29:43Z",
+  "note": "This directory is a vendored copy of the upstream repository with .git metadata removed."
+}

@@ -1,0 +1,7 @@
+{
+  "source_url": "https://github.com/ConardLi/garden-skills.git",
+  "source_commit": "e3e9ada877f47d984916d8169b7cf310ea0e2227",
+  "source_branch": "main",
+  "vendored_at_utc": "2026-06-09T01:29:42Z",
+  "note": "This directory is a vendored copy of the upstream repository with .git metadata removed."
+}

@@ -1,0 +1,7 @@
+{
+  "source_url": "https://github.com/K-Dense-AI/claude-scientific-writer.git",
+  "source_commit": "5dea0f299ec1e0b05a0f1f1378c4a0f2a27fd74a",
+  "source_branch": "main",
+  "vendored_at_utc": "2026-06-09T01:29:44Z",
+  "note": "This directory is a vendored copy of the upstream repository with .git metadata removed."
+}
